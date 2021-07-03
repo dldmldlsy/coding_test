@@ -1,3 +1,8 @@
+//백준 4344번
+//단계별 - 배열 
+// 평균은 넘겠지
+
+//소수점자리제한하는 법!!
 #include<iostream>
 #include<cmath>
 using namespace std;
@@ -19,8 +24,9 @@ int main() {
 			if (a[i] > aver)
 				c++;
 		}
-		cout.setf(ios::showpoint);
-		cout.precision(5);
-		cout << floor(c/ (double)n * 1000000+0.5)/1000<< "%" << endl;
+
+		cout << fixed;
+		cout.precision(3);
+		cout << (c/(double)n)*100<< "%" << endl;
 	}
 }
