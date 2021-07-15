@@ -1,3 +1,7 @@
+//백준 1152번
+//단계별 문자열
+//단어의 개수 - correct!
+//공백하나만 입력된 케이스 생각못해서 오래걸림!
 #include<iostream>
 #include<string>
 using namespace std;
