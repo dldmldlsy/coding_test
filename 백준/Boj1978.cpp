@@ -1,3 +1,6 @@
+//백준 1978번
+//단계별 -기본수학2
+//소수찾기-correct!
 #include<iostream>
 using namespace std;
 bool isPrimeNumber(int x);
