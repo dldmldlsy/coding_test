@@ -5,7 +5,8 @@ using namespace std;
 
 vector<int> solution(int brown, int yellow) {
     vector<int> answer;
-    int w, h; //brown=w*h-(w-2)*(h-2)=2w+2h-4, yellow= (w-2)*(h-2)=w*h-brown
+    int w, h; 
+    //brown=w*h-(w-2)*(h-2)=2w+2h-4, yellow= (w-2)*(h-2)=w*h-brown
     //brown+yellow=w*h 
     //2(w+h)=brown+4
     //w+h=brown/2+2

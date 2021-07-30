@@ -6,8 +6,8 @@ using namespace std;
 bool isPrimeNumber(int x) {
     if (x <= 1)
         return false;
-    int end = x / 2;
-    for (int i = 2; i < end; i++) {
+    int end = x/2;
+    for (int i = 2; i <=end; i++) {
         if (x % i == 0)
             return false;
     }
@@ -29,6 +29,7 @@ int solution(string numbers) { //0~9 숫자로 구성.  1~7길이
                v.push_back(stoi(s));
            }
          } while (next_permutation(num.begin(), num.end()));
+
        sort(v.begin(), v.end());
        v.erase(unique(v.begin(), v.end()),v.end());
 
