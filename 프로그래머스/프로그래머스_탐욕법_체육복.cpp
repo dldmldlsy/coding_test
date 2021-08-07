@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include<iostream>
+#include<algorithm>
 using namespace std;
 
 int solution(int n, vector<int> lost, vector<int> reserve) {
@@ -23,8 +24,15 @@ int solution(int n, vector<int> lost, vector<int> reserve) {
         }
         if (!self) lost_num.push_back(*i); // false=>  도난당했는데여벌을 가지고 있지않은 학생이므로 lost_num에 추가. 
     }
-
-    
+    for (int i = 0; i < lost_num.size(); i++) {
+        cout << lost_num[i] << " ";
+    }
+    cout << endl;
+    sort(lost_num.begin(), lost_num.end());
+    for (int i = 0; i < lost_num.size(); i++) {
+        cout << lost_num[i] << " ";
+    }
+    cout << endl;
     for (int i = 0; i < lost_num.size(); i++) { //도난당한 학생 번호의 배열을 돌면서 
         for (vector<int> ::iterator iter = reserve_num.begin(); iter < reserve_num.end(); iter++) { //여벌옷가져온 학생번호배열을 돎. 
             if (lost_num[i] == *iter - 1 || lost_num[i] == *iter + 1) { //도난당한 학생번호가 여벌옷가져온 학생번호-1 or +1일일때
