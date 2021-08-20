@@ -2,7 +2,7 @@
 #include <vector>
 
 using namespace std;
-bool check[201];
+bool check[201]; 
 void dfs(vector<vector<int>> v, int idx) {
     for (int i = 0; i < v[idx].size(); i++) {
         if (v[idx][i] == 1 && check[i] == false) {
