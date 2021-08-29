@@ -38,10 +38,7 @@
 #include<queue>
 #include<algorithm>
 using namespace std;
-bool cmp(vector<int> a, vector<int> b) {
-	if (a.second == ) return a < b;
-	return abs(a) < abs(b);
-}
+
 int main() {
 	ios_base::sync_with_stdio(0);
 
@@ -50,16 +47,15 @@ int main() {
 	int n;
 	cin >> n;
 	int tmp;
-	priority_queue<pair<int,int> q;
+	priority_queue<pair<int,int>> q;
 	while (n--) {
 		cin >> tmp;
 		if (tmp != 0) { //0이 아니면 입력
-			q.push(make_pair(tmp, abs(tmp)));
-			sort(q.begin(), q.end(), cmp);
+			q.push(make_pair(-abs(tmp),-tmp));
 		}
 		else {
-			if (d.empty()) cout << 0 << "\n";
-			else { cout << d.front() << "\n";  d.pop_front(); }
+			if (q.empty()) cout << 0 << "\n";
+			else { cout << -q.top().second << "\n";  q.pop(); }
 		}
 	}
 
