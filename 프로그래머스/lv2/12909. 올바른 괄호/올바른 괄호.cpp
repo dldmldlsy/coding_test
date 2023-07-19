@@ -18,14 +18,14 @@ bool solution(string s)
     //문자열 돌면서 괄호쌍 확인
     for(int i=1; i<s.length(); i++){
         //여는 괄호가 나오면 스택에 저장
-        if(s[i] == '('){
-            st.push(s[i]);
-        }else{ 
+        if(s[i]==')'){
             //닫는 괄호가 나올 시, 스택이 비어있는지 확인 
             //-> 비어있다면 닫는 괄호가 짝인 여는 괄호가 없다는 뜻 => false
             if(st.empty()){answer = false; break;}
             //닫는 괄호가 나오면 스택에 있는 여는 괄호 하나를 pop. -> 짝 지음 
             st.pop();
+        }else{
+            st.push(s[i]);
         }
     }
     //스택이 비어있으면 올바른 괄호
