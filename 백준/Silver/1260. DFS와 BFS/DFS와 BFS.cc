@@ -1,77 +1,73 @@
-//백준 1260번 DFS와 BFS
-/*
-* 주어진 그래프의 DFS결과와 BFS 결과 출력 
-* 정점 N개. 정점 번호 작은 것부터 방문. 더이상 방문할 점 없으면 종료.
-* 시간 2초. N: 1~1000. M:1~1000
-* O(N2) 
-*/
 #include <iostream>
-#include <algorithm>
-#include <vector>
 #include <queue>
+#include <vector> 
+#include <algorithm>
 using namespace std; 
 vector<vector<int>> graph;
-vector<bool> visited; 
-
-void dfs(int x); 
-void bfs(int x); 
+vector<int> visit; //방문: 1, 미방문: 0
+void dfs(int);
+void bfs(int);
 int main() {
-	ios::sync_with_stdio(false);
-	cin.tie(NULL);
-
-	int n, m, start;
-	cin >> n >> m >> start;
-
-	graph.resize(n + 1);
-	visited = vector<bool>(n + 1, false);
-
-	int u, v;
-	for (int i = 0; i < m; i++) {
-		cin >> u >> v;
-		graph[u].push_back(v);
-		graph[v].push_back(u);
-	}
-	for (int i = 1; i <= n; i++) {
-		sort(graph[i].begin(), graph[i].end());
-	}
-
-	dfs(start); 
-
-	cout << "\n"; 
-	fill(visited.begin(), visited.end(), false); 
-	bfs(start);
-	
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+    
+    int n, m, v; 
+    cin>>n>>m>>v; 
+    
+    //정점번호가 1번부터 시작~
+    //n+1 크기, 0으로 초기화
+    visit.resize(n+1);
+    graph.resize(n+1);
+    
+    for(int i=0; i<m; i++)  {
+        int a, b; 
+        cin>>a>>b;
+        graph[a].push_back(b);
+        graph[b].push_back(a); 
+    }
+    
+    //각 행돌면서 인접한 정점을 넣은 리스트에 대해 정점 번호순으로 오름차순 정렬시키기 -> 정점 낮은 순서대로 접근하기 위함.
+    for(int i=1; i<=n; i++){
+        sort(graph[i].begin(), graph[i].end());
+    }
+    
+    //dfs
+    dfs(v);
+    cout<<"\n";
+    
+    //bfs에 새로 체크해야하기 때문에 방문배열 0으로 만들기
+    fill(visit.begin(), visit.end(), 0);
+    
+    //bfs    
+    queue<int> q; 
+    q.push(v);
+    visit[v] = 1; 
+    while(!q.empty()) {
+        int cur = q.front(); 
+        q.pop(); 
+        //visit[cur] = 1; 
+        cout<<cur<<" ";
+        
+        for(int i=0; i<graph[cur].size(); i++) {
+            if(visit[graph[cur][i]]==0) {
+                visit[graph[cur][i]] = 1; 
+                q.push(graph[cur][i]);
+            }
+        }
+    }
 }
-void dfs(int x) {
-	if (visited[x]) {
-		return;
-	}
-	visited[x] = true; 
-	cout << x << " ";
-	for (int i = 0; i < graph[x].size(); i++) {
-		if(!visited[graph[x][i]]) {
-			dfs(graph[x][i]);
-		}
-	}
-}
-void bfs(int x) {
-	queue<int> q; 
-	
-	q.push(x); 
-	visited[x] = true;
 
-	while (!q.empty()) {
-		int f = q.front(); 
-		q.pop(); 
-		cout << f << " "; 
-
-		for (int i = 0; i < graph[f].size(); i++) {
-			if (!visited[graph[f][i]]) {
-				visited[graph[f][i]] = true;
-				q.push(graph[f][i]); 
-			}
-		}
-	}
-	
-
+void dfs(int n) {
+    if(visit[n]) {
+        return; 
+    }
+    
+    visit[n] = 1; 
+    cout<<n<<" ";
+    
+    for(int i=0; i<graph[n].size(); i++) {
+        if(!visit[graph[n][i]]) {
+            dfs(graph[n][i]);
+        }
+    }
 }
