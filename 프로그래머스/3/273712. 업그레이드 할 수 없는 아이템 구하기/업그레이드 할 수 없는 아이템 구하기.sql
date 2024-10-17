@@ -1,0 +1,10 @@
+SELECT II.ITEM_ID, ITEM_NAME, RARITY
+FROM ITEM_INFO AS II
+JOIN ITEM_TREE AS IT
+ON II.ITEM_ID = IT.ITEM_ID
+WHERE II.ITEM_ID NOT IN (
+                            SELECT DISTINCT IT.PARENT_ITEM_ID
+                            FROM ITEM_TREE AS IT
+                            WHERE IT.PARENT_ITEM_ID IS NOT NULL
+                        )
+ORDER BY II.ITEM_ID DESC
