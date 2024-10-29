@@ -9,19 +9,19 @@ class Solution {
         int num = 1;
         int row = 0, col = 0; 
         
-        int cnt = n; 
-        while(cnt>0){
+        int cnt = 0; 
+        while(cnt<n){
             while(row<n&&dal[row][col]==0){
                 dal[row++][col] = num++; 
             }
-            if(--cnt == 0) {break;}
+            if(++cnt==n) {break;}
             
             row--; 
             col++; 
             while(col<n&&dal[row][col]==0){
                 dal[row][col++] = num++; 
             }
-            if(--cnt == 0) {break;}
+            if(++cnt == n) {break;}
 
             col--; 
             row--; col--; 
@@ -30,7 +30,7 @@ class Solution {
             }
             row++; col++;
             row++;
-            if(--cnt == 0) {break;}
+            if(++cnt == n) {break;}
         }
         
         answer = new int[size];
