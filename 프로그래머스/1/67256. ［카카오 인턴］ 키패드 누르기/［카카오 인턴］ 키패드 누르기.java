@@ -1,53 +1,60 @@
+import java.util.*;
+
 class Solution {
     public String solution(int[] numbers, String hand) {
         String answer = "";
-        int leftnow = 10;
-        int rightnow = 12; 
-        int lr = 0; 
-        int lc = 0; 
-        int rr = 0; 
-        int rc = 0; 
-        int nr = 0; 
-        int nc = 0; 
+        Set<Integer> setleft = Set.of(1, 4, 7); 
+        Set<Integer> setright = Set.of(3, 6, 9);
+        int nowleft = 10; 
+        int nowright = 12; 
+        int goal = 0; 
+        int lr, lc; 
+        int rr, rc; 
+        int gr, gc; 
         for(int number: numbers){
-            if(number==1||number==4||number==7){
-                leftnow = number;
+            if(number==0){
+                number = 11; 
+            }
+            if(setleft.contains(number)){
                 answer += "L";
-            }else if (number==3||number==6||number==9){
-                rightnow = number;
+                nowleft = number;
+            }else if (setright.contains(number)){
                 answer+="R";
-            }else{ // 2 5 8 0
-                if(number==0) {number=11;}
-                lr = (int) Math.ceil((double)leftnow/3); 
-                lc = leftnow - 3*(lr-1);
+                nowright = number;
+            }else {
+                goal = number;
+                gc = goal%3; if(gc==0) gc=3;
+                gr = (goal-gc)/3; 
                 
-                rr = (int) Math.ceil((double)rightnow/3); 
-                rc = rightnow - 3*(rr-1);
+                lc = nowleft%3; if(lc==0) lc = 3;
+                lr = (nowleft-lc)/3; 
                 
-                nr = (int) Math.ceil((double)number/3); 
-                nc = number - 3*(nr-1);
+                rc = nowright%3; if(rc==0) rc = 3; 
+                rr = (nowright-rc)/3; 
                 
-                int disleft = Math.abs(nr-lr) + Math.abs(nc-lc);
-                int disright = Math.abs(nr-rr) + Math.abs(nc-rc);
-                
+                int disleft = Math.abs(gr-lr)+Math.abs(gc-lc); 
+                int disright = Math.abs(gr-rr)+Math.abs(gc-rc);
+                //System.out.println(number+": "+nowleft+" "+nowright+", "+disleft+" "+disright + ":: "+gr+gc+rr+rc);
+                //if(number==11){}
                 if(disleft<disright){
-                    leftnow = number;
-                    answer+= "L";
-                }else if(disleft>disright){
-                    rightnow = number;
-                    answer+= "R";
+                    answer+="L";
+                    nowleft= number;
+                }else if(disright<disleft){
+                    answer+="R";
+                    nowright = number;
                 }else{
                     if(hand.equals("left")){
-                        leftnow = number;
-                        answer+= "L";
-                    }else{
-                        rightnow = number;
-                        answer+= "R";   
+                        answer+="L";
+                        nowleft= number;
+                    }else if(hand.equals("right")){
+                        answer+="R";
+                        nowright = number;
                     }
                 }
-                
             }
         }
+        
+        
         return answer;
     }
 }
