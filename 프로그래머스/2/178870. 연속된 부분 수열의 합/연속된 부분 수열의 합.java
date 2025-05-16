@@ -5,18 +5,15 @@ class Solution {
         answer = new int[2];
         
         int len = sequence.length+1; ; // 부분배열 길이
-        int start = 0, end = 0;
-        int sum; 
-        sum = sequence[start];
+        int start = 0, end = 0; //두 인덱스 모두 시작점에서 출발
+        int sum; // 부분 수열 합
+        sum = sequence[start]; 
         while(end<sequence.length&&start<=end){
-            //System.out.println(sum+" "+k);
             if(sum<k){
-                end++; 
-                if(end==sequence.length) break;
+                if(++end==sequence.length) break;
                 sum+=sequence[end];
             }else if(sum>k){
-                sum-=sequence[start];
-                start++;
+                sum-=sequence[start++];
             }else{ // sum = k
                 if(end-start<len){
                     len = end-start; 
@@ -28,9 +25,8 @@ class Solution {
                         answer[1] = end;
                     }
                 }
-                end++;
-                if(end==sequence.length) break;
-                sum+=sequence[end];
+                //if(++end==sequence.length) break;
+                sum-=sequence[start++];
             }
         }
         return answer;
