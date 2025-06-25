@@ -1,6 +1,6 @@
 class Solution {
     public int solution(int[] num_list) {
-        int answer = 1;
+        int answer = (num_list.length>=11) ? 0 : 1;
         
         int len = num_list.length; 
         
@@ -10,9 +10,6 @@ class Solution {
             }else{
                 answer*=num_list[i];
             }
-        }
-        if(len>=11){
-            answer--;
         }
           
         return answer;
