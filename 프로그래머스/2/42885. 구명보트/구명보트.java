@@ -2,23 +2,31 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] people, int limit) {
-        Arrays.sort(people); // 몸무게 오름차순 정렬
-        int left = 0;
-        int right = people.length - 1;
-        int boats = 0;
-
-        while (left <= right) {
-            if (people[left] + people[right] <= limit) {
-                // 둘이 같이 타기
-                left++;
-                right--;
-            } else {
-                // 무거운 사람 혼자 타기
-                right--;
+        int answer = 0;
+        
+        Arrays.sort(people);
+        
+        int max = people.length-1; 
+        int min = 0;
+        int cnt =0; 
+        
+        while(min<max){
+            if((people[min]+people[max])>limit){ //동반 탑승 불가
+                answer++;
+                max--;
+                cnt++; 
+            }else{ //동반 탑승
+                answer++;
+                max--;
+                min++;
+                cnt += 2; 
             }
-            boats++; // 보트 1대 사용
         }
-
-        return boats;
+        
+        if(cnt<people.length){
+            answer++;
+        }
+        
+        return answer;
     }
 }
