@@ -17,13 +17,13 @@ public class Main {
         }
     
         int minPrice = price[0];
-        int totalPrice = 0; 
+        long totalPrice = 0; 
     
         for(int i=0; i<n-1; i++){
             if(minPrice>price[i]){
                 minPrice = price[i];
             }
-            totalPrice += minPrice*len[i];
+            totalPrice += minPrice*(long)len[i];
         }
     
         System.out.println(totalPrice);
