@@ -53,7 +53,7 @@ public class Main {
     }
 
     static void bfs(int v){
-        Queue<Integer> q = new LinkedList<>();
+        Queue<Integer> q = new ArrayDeque<>();
         q.add(v);
         visited[v] = true;
         while(!q.isEmpty()){
