@@ -4,8 +4,7 @@ class Solution {
     public String solution(int[] numbers) {
         String answer = "";
         String[] strs = new String[numbers.length];
-        
-        //numbers->문자열 배열 
+         
         for(int i = 0; i<numbers.length; i++){
             strs[i] = Integer.toString(numbers[i]);
         }
