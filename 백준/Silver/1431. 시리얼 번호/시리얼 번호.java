@@ -23,13 +23,11 @@ public class Main {
               int sum1 = 0;
               int sum2 = 0;
               for(int i=0; i<g1.length(); i++){
-                  int n1 = g1.charAt(i)-'0';
-                  int n2 = g2.charAt(i)-'0';
-                  if(n1>=0&&n1<=9) {
-                      sum1 += n1;
+                  if(Character.isDigit(g1.charAt(i))) {
+                      sum1 += g1.charAt(i)-'0';
                   }
-                  if(n2>=0&&n2<=9) {
-                      sum2 += n2;
+                  if(Character.isDigit(g2.charAt(i))) {
+                      sum2 += g2.charAt(i)-'0';
                   }
               }
               if(sum1 != sum2){
