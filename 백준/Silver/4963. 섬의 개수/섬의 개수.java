@@ -7,6 +7,7 @@ public class Main {
     static int[][] map;
     static int w, h;
     static boolean[][] visited;
+    
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
@@ -35,7 +36,6 @@ public class Main {
             }
 
             System.out.println(cnt);
-
         }
 
     }
