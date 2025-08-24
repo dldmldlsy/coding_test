@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Main {
 
     static ArrayList<ArrayList<Integer>> graph;
+    
     static boolean[] visited;
 
     public static void main(String[] args){
