@@ -23,7 +23,6 @@ class Solution {
             if (k <= 0) {
                 break;
             }
-
             answer++;
             k -= map.get(i);
         }
