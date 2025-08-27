@@ -11,6 +11,7 @@ class Solution {
         
         while(left<=right){
             int mid = (left+right)/2; 
+            
             //lowerbound 구하기
             int idx = lowerBound(citations, mid);
             int cnt = citations.length-idx;
