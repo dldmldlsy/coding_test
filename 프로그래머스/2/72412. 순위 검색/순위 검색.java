@@ -39,7 +39,7 @@ class Solution {
         DFS(info, str + info[depth], depth + 1);
     }
 
-    // 코딩 테스트 점수를 이분 탐색하여 조건을 만족하는 인원 수 찾기
+    // 코테 점수를 이분 탐색하여 조건을 만족하는 인원 수 찾기
     static int BinarySearch(String query) {
         String[] arr = query.split(" and ");
         int score = Integer.parseInt(arr[3].split(" ")[1]);
