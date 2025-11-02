@@ -3,26 +3,12 @@ class Solution {
         String answer = "";
         int total=0;
         int[] year = {0, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        String[] week ={"FRI", "SAT", "SUN", "MON", "TUE", "WED", "THU"};
         for(int i=1; i<a; i++){
             total+=year[i];
         }
-        total += b;
-        total--;
-        if(total%7==0){
-            answer="FRI";
-        }else if(total%7==1){
-            answer="SAT";
-        }else if(total%7==2){
-            answer ="SUN";
-        }else if(total%7==3){
-            answer="MON";
-        }else if(total%7==4){
-            answer="TUE";
-        }else if(total%7==5){
-            answer="WED";
-        }else if(total%7==6){
-            answer="THU";
-        }
+        total += b-1;
+        answer = week[total%7];
             
         return answer;
     }
